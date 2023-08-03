@@ -1,38 +1,348 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap");
+
+:root {
+  --color1: #f38181;
+  --color2: #fce38a;
+  --color3: #00adb5;
+  --color4: #95e1d3;
+  --color5: #1293ba;
+  --color6: #3c5c85;
+  --color7: #476b9d;
+  --color8: #fd743d;
+  --color9: #f47e4f;
+  --color10: #f99467;
+}
+html {
+  scroll-behavior: initial;
+  overflow: hidden;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
 .App {
+  max-width: 920px;
+  margin: 0 auto;
+}
+.title h1 {
+  color: var(--primary);
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  font-weight: normal;
+}
+.title h2,
+.title p {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.title h2 {
+  margin-top: 60px;
+  font-size: 2.6rem;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+form {
+  margin: 30px auto 10px;
+  text-align: center;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+label input {
+  height: 0;
+  width: 0;
+  opacity: 0;
+}
+label {
+  display: block;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--primary);
+  border-radius: 50%;
+  margin: 10px auto;
+  line-height: 30px;
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 24px;
+}
+label:hover {
+  background: var(--primary);
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.output {
+  height: 60px;
+  font-size: 0.8rem;
+}
+.error {
+  color: var(--error);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.gallery {
+  -webkit-column-count: 3;
+  -moz-column-count: 3;
+  column-count: 3;
+  -webkit-column-width: 33%;
+  -moz-column-width: 33%;
+  column-width: 33%;
+  padding: 0 12px;
+}
+
+.gallery .pics {
+  -webkit-transition: all 350ms ease;
+  transition: all 350ms ease;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 991px) {
+  .gallery {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
   }
-  to {
-    transform: rotate(360deg);
+}
+@media (max-width: 480px) {
+  .gallery {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+    -webkit-column-width: 100%;
+    -moz-column-width: 100%;
+    column-width: 100%;
   }
+}
+.model {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  transition: opacity 0.4s ease, visibility 0.4s ease,
+    transform 0.5s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0);
+  overflow: hidden;
+  z-index: 999;
+}
+
+.model.open {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.model img {
+  width: auto !important;
+  max-width: 100%;
+  height: auto !important;
+  max-height: 100%;
+  display: block;
+  line-height: 0;
+  box-sizing: border-box;
+  padding: 20px 0 20px;
+  margin: 0 auto;
+}
+
+.model svg {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 2rem;
+  height: 2rem;
+  padding: 5px;
+  background-color: (0, 0, 0, 0.4);
+  color: white;
+  cursor: pointer;
+}
+
+.progress-bar {
+  height: 5px;
+  background: var(--primary);
+  margin-top: 20pxs;
+}
+
+.icon-container {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  display: flex;
+  gap: 30px;
+}
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.grid-parent {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  position: relative;
+  top: 100px;
+  gap: 10px;
+  padding: 20px;
+}
+
+.grid-child {
+  border: 1px solid #212121;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 100px;
+  cursor: pointer;
+}
+.folder-title {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.back-icon {
+  position: absolute;
+  top: 30px;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+/* LenisComponent and TopPisOfTheMonth */
+
+h2 {
+  font-size: 60px;
+  font-weight: 900;
+  line-height: 85%;
+  border-left: 3px solid #ff98a2;
+  padding: 25px;
+  margin: 0;
+}
+
+h2 span {
+  display: block;
+  font-size: 70px;
+}
+
+h3 {
+  font-size: 40px;
+  color: #ff98a2;
+  line-height: 100%;
+  font-family: fantasy;
+  word-spacing: 6px;
+  letter-spacing: 1px;
+}
+p {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+h2,
+h3,
+h4 {
+  text-transform: uppercase;
+}
+
+.container {
+  width: 95%;
+  margin: auto;
+}
+
+section {
+  padding: 50px 0;
+}
+.section_1 {
+  background-color: #6159e5;
+}
+.section_2 {
+  background-color: rgb(11, 115, 115);
+}
+
+.col {
+  width: 50%;
+}
+
+#vertical {
+  height: 200vh;
+  width: 100vw;
+}
+
+.vertical__content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.vertical__content .col_left {
+  height: 100%;
+}
+
+.vertical__content .col.col_right {
+  width: 40%;
+}
+
+.vertical__item:not(:last-child) {
+  margin-bottom: 100px;
+}
+
+#horizontal {
+  padding: 100px 0;
+}
+
+.horizontal__content {
+  display: flex;
+}
+
+.horizontal__item {
+  border: 1px solid #efefef;
+  padding: 200px 150px;
+}
+
+.horizontal__item:not(:last-child) {
+  margin-right: 50px;
+}
+
+.horizontal__num {
+  font-size: 80px;
+  font-weight: 900;
+  font-stretch: condensed;
+  color: #ff98a2;
+}
+
+.top-pics {
+  margin-top: -4rem;
+  margin-bottom: 3rem;
+  margin-left: 2rem;
+}
+.about-cse-beta {
+  font-family: fantasy;
+  letter-spacing: 5px;
 }
