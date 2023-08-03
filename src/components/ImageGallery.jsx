@@ -3,6 +3,7 @@ import { Box, Typography } from "@mui/material";
 import { FiArrowLeftCircle } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import ImageGrid from "../utils/ImageGrid";
+// eslint-disable-next-line
 import UploadForm from "../utils/Uploadform";
 
 const ImageGallery = () => {
