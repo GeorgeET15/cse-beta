@@ -15,7 +15,7 @@ CSE BETA is a React.js website designed for the Computer Science and Engineering
 
 ## Demo
 
-You can see a live demo of the website at [https://csebeta26.netlify.app/]([https://www.csebeta.com](https://csebeta26.netlify.app/)).
+You can see a live demo of the website at [https://csebeta26.netlify.app/](https://csebeta26.netlify.app/)
 
 ## Features
 
